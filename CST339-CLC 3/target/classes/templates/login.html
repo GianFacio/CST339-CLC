@@ -1,0 +1,33 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/defaultTemplate">
+  <head> </head>
+  <body>
+    <div layout:fragment="content">
+    
+   
+      <form action="/trainer.html" th:action="@{/doLogin}" th:object="${accountModel}" method="POST">
+        <h1>Login</h1>
+        <div class="card-body py-2 px-md-5" style="width: 40%;">
+          <form class="form-outline mb-4">
+            <div class="form-row">
+              <div class="col">
+                <input type="text" th:field="*{username}" class="form-control" />
+                <label class="form-label">Username</label>
+                <p style="color: red;" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username error</p>
+              </div>
+              <div class="col">
+                <input type="text" th:field="*{password}" class="form-control" />
+                <label class="form-label">Password</label>
+                <p style="color: red;" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</p>
+              </div>
+            </div>
+            <input class="btn btn-primary btn-block mb-4" type="submit" value="Login" />
+          </form>
+ 			
+ 		<div th:if="${failedLogin == true}">
+            <h4 style="color: red;">Account Not Found</h4>
+         </div>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
